@@ -1,4 +1,4 @@
-import { usePodcast } from "./hooks/usePodcast";
+import { usePodcast } from "../hooks/usePodcast";
 
 import "./App.css";
 import { useState } from "react";
@@ -45,8 +45,7 @@ interface Podcast {
     label: string;
   };
 }
-
-function App() {
+const Home = () => {
   const [keyword, setKeyword] = useState("");
   const { copyData, dataPodcast, setDataPodcast } = usePodcast();
 
@@ -100,6 +99,6 @@ function App() {
       ))}
     </div>
   );
-}
+};
 
-export default App;
+export default Home;
