@@ -1,50 +1,9 @@
-import { usePodcast } from "../hooks/usePodcast";
-
-import "./App.css";
 import { useState } from "react";
+import { usePodcast } from "../../hooks/usePodcast";
 
-interface Podcast {
-  category: {
-    attributes: any;
-  };
-  id: {
-    label: string;
-    attributes: any;
-  };
-  "im:artist": {
-    label: string;
-    attributes: any;
-  };
-  "im:contentType": {
-    attributes: any;
-  };
-  "im:image": {
-    label: string;
-  }[];
-  "im:name": {
-    label: string;
-  };
-  "im:price": {
-    label: string;
-    attributes: any;
-  };
-  "im:releaseDate": {
-    label: string;
-    attributes: any;
-  };
-  link: {
-    attributes: any;
-  };
-  rights: {
-    label: string;
-  };
-  summary: {
-    label: string;
-  };
-  title: {
-    label: string;
-  };
-}
+import { PodcastType } from "./type";
+
+import "./main.css";
 const Home = () => {
   const [keyword, setKeyword] = useState("");
   const { copyData, dataPodcast, setDataPodcast } = usePodcast();
@@ -74,29 +33,38 @@ const Home = () => {
     }
   };
 
-  const handlePodcast = (item: Podcast) => {
-    console.log("redicrect");
+  const handlePodcast = (item: PodcastType) => {
+    console.log("redicrect", item.id);
   };
   return (
-    <div>
-      <h1>Podcaster</h1>
-      <div>
+    <div className="containerPodcaster">
+      <p className="pPodcaster">Podcaster</p>
+
+      <div className="containerPodcasterSearch">
         <form action="" onSubmit={(e) => e.preventDefault()}>
-          <input type="text" value={keyword} onChange={(e) => changeInput(e)} />
-          <button>send</button>
+          <input
+            type="text"
+            placeholder="Filter podcast"
+            value={keyword}
+            onChange={(e) => changeInput(e)}
+          />
         </form>
       </div>
-      {dataPodcast?.map((item, index) => (
-        <div key={index} onClick={() => handlePodcast(item)}>
-          <div>
+      <div className="containerDataPodcast">
+        {dataPodcast?.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => handlePodcast(item)}
+            className="contaierPodcastInfo"
+          >
             <div>
               <img src={item["im:image"][0].label} alt="" />
             </div>
             <h2>{item["im:name"].label}</h2>
             <p>Author:{item["im:artist"].label}</p>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

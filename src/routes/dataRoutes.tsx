@@ -5,7 +5,7 @@ const PATH_ROUTES = {
   detailPodcasat: "/detailPodcasat/:ref",
 };
 
-export const routes = [
+export const routesData = [
   {
     path: PATH_ROUTES.home,
     element: <Home />,
