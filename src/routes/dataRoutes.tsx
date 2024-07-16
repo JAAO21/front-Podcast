@@ -1,8 +1,10 @@
-import { Home, DetailPodcast, NotFound } from "../views";
+import { Home, DetailPodcast, NotFound, DetailEpisodes } from "../views";
 
 const PATH_ROUTES = {
   home: "/home",
   detailPodcasat: "/detailPodcasat/:ref",
+  detailEpisodes:
+    "/detailPodcast/:idDetailPodcast/detailEpisodes/:idDetailEpisodes",
 };
 
 export const routesData = [
@@ -17,5 +19,9 @@ export const routesData = [
   {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: PATH_ROUTES.detailEpisodes,
+    element: <DetailEpisodes />,
   },
 ];

@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { usePodcast } from "../../hooks/usePodcast";
-
-import { PodcastType } from "./type";
+import { useSeacrhCountPodcast } from "../../hooks/useSeacrhCountPodcast";
+import { Podcast } from "../../layout/types/typePodcast";
 
 import "./main.css";
 const Home = () => {
-  const [keyword, setKeyword] = useState("");
   const { copyData, dataPodcast, setDataPodcast } = usePodcast();
+  const { countPodcast, keyword, setKeyword, setPreviousWord } =
+    useSeacrhCountPodcast({ dataPodcast, copyData, setDataPodcast });
+
+  const navigate = useNavigate();
 
   const changeInput = (e: any) => {
     e.preventDefault();
+
     setKeyword(e.target.value);
 
     searchTitleArtist(e.target.value);
@@ -30,17 +34,20 @@ const Home = () => {
       setKeyword("");
     } else {
       setDataPodcast(seacrhTitle);
+      setPreviousWord(keyword);
     }
   };
 
-  const handlePodcast = (item: PodcastType) => {
-    console.log("redicrect", item.id);
+  const handlePodcast = (item: Podcast) => {
+    navigate(`/detailPodcasat/${item.id.attributes["im:id"]}`);
   };
+
   return (
     <div className="containerPodcaster">
       <p className="pPodcaster">Podcaster</p>
-
+      <hr />
       <div className="containerPodcasterSearch">
+        <p className="pCountPodcast">{countPodcast}</p>
         <form action="" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
@@ -58,7 +65,7 @@ const Home = () => {
             className="contaierPodcastInfo"
           >
             <div>
-              <img src={item["im:image"][0].label} alt="" />
+              <img src={item["im:image"][2].label} alt="" />
             </div>
             <h2>{item["im:name"].label}</h2>
             <p>Author:{item["im:artist"].label}</p>

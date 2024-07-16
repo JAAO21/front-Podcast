@@ -1,0 +1,26 @@
+.containerDetailEpisodes {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  height: 100%;
+}
+
+.containerInfoDetailEpisode {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  margin: 7px;
+  align-items: center;
+}
+.containerInfoDetailEpisode > div {
+  padding: 20px;
+}
+.containerArtistDescriptionDetailEpisode {
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  height: calc(35%);
+  margin: 7px;
+}
+p {
+  color: black;
+}

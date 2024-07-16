@@ -1,4 +1,4 @@
-export type PodcastType = {
+export interface Podcast {
   category: {
     attributes: any;
   };
@@ -39,4 +39,4 @@ export type PodcastType = {
   title: {
     label: string;
   };
-};
+}

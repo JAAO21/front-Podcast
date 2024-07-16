@@ -1,49 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLoading } from "./useLoading";
 import { getAllPodcast } from "../services/axios/apiPodcast";
-
-interface Podcast {
-  category: {
-    attributes: any;
-  };
-  id: {
-    label: string;
-    attributes: any;
-  };
-  "im:artist": {
-    label: string;
-    attributes: any;
-  };
-  "im:contentType": {
-    attributes: any;
-  };
-  "im:image": {
-    label: string;
-  }[];
-  "im:name": {
-    label: string;
-  };
-  "im:price": {
-    label: string;
-    attributes: any;
-  };
-  "im:releaseDate": {
-    label: string;
-    attributes: any;
-  };
-  link: {
-    attributes: any;
-  };
-  rights: {
-    label: string;
-  };
-  summary: {
-    label: string;
-  };
-  title: {
-    label: string;
-  };
-}
+import { Podcast } from "../layout/types/typePodcast";
 
 export const usePodcast = () => {
   const [dataPodcast, setDataPodcast] = useState<Podcast[]>([]);
@@ -60,7 +18,7 @@ export const usePodcast = () => {
           setCopyData(data.data.feed.entry);
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
